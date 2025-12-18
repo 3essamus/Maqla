@@ -14,22 +14,107 @@ datasource db {
     relationMode = "prisma"
 }
 
+// Enums
+enum UserRole {
+    ADMIN
+    USER
+}
+
+enum UserTier {
+    FREE
+    PAID
+}
+
+enum KeyStatus {
+    UNUSED
+    USED
+    EXPIRED
+}
+
+// User model for authentication and tier management
+model User {
+    id            String    @id @default(cuid())
+    email         String    @unique
+    name          String?
+    image         String?
+    role          UserRole  @default(USER)
+    tier          UserTier  @default(FREE)
+    tierExpiresAt DateTime?
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @updatedAt
+
+    restaurants   Restaurant[]
+    activatedKeys ActivationKey[]
+
+    @@index([email])
+    @@index([role])
+}
+
+// Activation keys for tier upgrades
+model ActivationKey {
+    id          String    @id @default(cuid())
+    key         String    @unique @default(cuid())
+    tier        UserTier
+    expiresAt   DateTime  // 1 year from generation
+    status      KeyStatus @default(UNUSED)
+
+    userId      String?
+    user        User?     @relation(fields: [userId], references: [id])
+
+    activatedAt DateTime?
+    createdAt   DateTime  @default(now())
+    createdBy   String    // Admin user ID
+
+    @@index([key])
+    @@index([status])
+}
+
+// Anonymous buyer reviews
+model Review {
+    id               String     @id @default(cuid())
+    restaurantId     String
+    restaurantUserId String     // For composite key relation
+    restaurant       Restaurant @relation(fields: [restaurantId, restaurantUserId], references: [id, userId])
+
+    buyerName    String
+    rating       Int       // 1-5 stars
+    comment      String
+
+    fingerprint  String    // Browser fingerprint for spam prevention
+    isHidden     Boolean   @default(false)
+
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+
+    @@index([restaurantId])
+    @@index([restaurantUserId])
+    @@index([fingerprint])
+    @@unique([restaurantId, fingerprint]) // Prevent duplicate reviews from same browser
+}
+
 model Restaurant {
-    id          String   @unique @default(cuid())
-    userId      String
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    name        String
-    location    String
-    contactNo   String
-    isPublished Boolean
-    menus       Menu[]   @relation("MenusOfRestaurant")
-    image       Image?   @relation("ImageOfRestaurant", fields: [imageId], references: [id], onDelete: SetNull, onUpdate: SetNull)
-    imageId     String?  @unique
-    banners     Image[]  @relation("BannersOfRestaurant")
+    id            String   @unique @default(cuid())
+    userId        String
+    user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    name          String
+    location      String
+    contactNo     String   // General contact (can be same as whatsapp)
+    whatsappNumber String? // WhatsApp number for orders
+    deliveryFee   Int?     // Delivery fee in DZD (e.g., 200)
+    isPublished   Boolean  @default(false)
+
+    menus         Menu[]   @relation("MenusOfRestaurant")
+    image         Image?   @relation("ImageOfRestaurant", fields: [imageId], references: [id], onDelete: SetNull, onUpdate: SetNull)
+    imageId       String?  @unique
+    banners       Image[]  @relation("BannersOfRestaurant")
+    reviews       Review[]
 
     @@id([id, userId])
     @@index([isPublished])
+    @@index([userId])
 }
 
 model Menu {

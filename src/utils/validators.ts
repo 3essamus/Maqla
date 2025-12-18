@@ -27,6 +27,17 @@ export const restaurantInput = z.object({
             .regex(/^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/, "Invalid contact number"),
         z.literal(""),
     ]),
+    whatsappNumber: z.union([
+        z
+            .string()
+            .trim()
+            .regex(/^(\+213|0)(5|6|7)[0-9]{8}$/, "Invalid Algerian phone number"),
+        z.literal(""),
+    ]).optional(),
+    deliveryFee: z.union([
+        z.number().int().min(0).max(9999),
+        z.null(),
+    ]).optional(),
     imageBase64: z.string(),
     imagePath: z.string().min(1, "Image is required"),
     location: z.string().trim().min(1, "Location is required").max(75, "Location cannot be longer than 75 characters"),
@@ -35,4 +46,21 @@ export const restaurantInput = z.object({
 export const bannerInput = z.object({
     imageBase64: z.string().min(1, "Image is required"),
     restaurantId: z.string().cuid(),
+});
+
+export const reviewInput = z.object({
+    restaurantId: z.string().cuid(),
+    buyerName: z.string().trim().min(1, "Name is required").max(50, "Name cannot be longer than 50 characters"),
+    rating: z.number().int().min(1, "Rating must be at least 1 star").max(5, "Rating cannot exceed 5 stars"),
+    comment: z.string().trim().min(1, "Comment is required").max(500, "Comment cannot be longer than 500 characters"),
+    fingerprint: z.string(),
+});
+
+export const activationKeyInput = z.object({
+    key: z.string().trim().min(1, "Activation key is required"),
+});
+
+export const generateKeyInput = z.object({
+    tier: z.enum(["FREE", "PAID"]),
+    expiresInDays: z.number().int().min(1).max(3650).default(365), // Default 1 year
 });

@@ -4,14 +4,53 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "src/env/server.mjs";
+import { prisma } from "src/server/db";
 
 export const authOptions: NextAuthOptions = {
     // Include user.id on session
     callbacks: {
-        session({ session, token }) {
+        async signIn({ user, account }) {
+            // Create or update user in database
+            if (user.email) {
+                await prisma.user.upsert({
+                    where: { email: user.email },
+                    create: {
+                        id: user.id,
+                        email: user.email,
+                        name: user.name,
+                        image: user.image,
+                    },
+                    update: {
+                        name: user.name,
+                        image: user.image,
+                    },
+                });
+            }
+            return true;
+        },
+        async session({ session, token }) {
             if (session.user && token.sub) {
-                // eslint-disable-next-line no-param-reassign
-                session.user.id = token.sub;
+                // Fetch user from database to get role, tier, etc.
+                const user = await prisma.user.findUnique({
+                    where: { id: token.sub },
+                    select: {
+                        id: true,
+                        role: true,
+                        tier: true,
+                        tierExpiresAt: true,
+                    },
+                });
+
+                if (user) {
+                    // eslint-disable-next-line no-param-reassign
+                    session.user.id = user.id;
+                    // eslint-disable-next-line no-param-reassign
+                    session.user.role = user.role;
+                    // eslint-disable-next-line no-param-reassign
+                    session.user.tier = user.tier;
+                    // eslint-disable-next-line no-param-reassign
+                    session.user.tierExpiresAt = user.tierExpiresAt;
+                }
             }
             return session;
         },

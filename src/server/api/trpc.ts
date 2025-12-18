@@ -118,6 +118,38 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
 });
 
 /**
+ * Middleware that enforces user is an admin
+ */
+const enforceUserIsAdmin = t.middleware(({ ctx, next }) => {
+    if (!ctx.session || !ctx.session.user) {
+        throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
+    if (ctx.session.user.role !== "ADMIN") {
+        throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+    }
+    return next({
+        ctx: {
+            session: { ...ctx.session, user: ctx.session.user },
+        },
+    });
+});
+
+/**
+ * Middleware that enforces user has USER role (not admin, just regular user)
+ */
+const enforceUserRole = t.middleware(({ ctx, next }) => {
+    if (!ctx.session || !ctx.session.user) {
+        throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
+    // Both USER and ADMIN can access, but this is for user-specific operations
+    return next({
+        ctx: {
+            session: { ...ctx.session, user: ctx.session.user },
+        },
+    });
+});
+
+/**
  * Protected (authed) procedure
  *
  * If you want a query or mutation to ONLY be accessible to logged in users, use
@@ -127,3 +159,17 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+/**
+ * Admin-only procedure
+ *
+ * Only accessible to users with ADMIN role
+ */
+export const adminProcedure = t.procedure.use(enforceUserIsAdmin);
+
+/**
+ * User procedure (for regular users)
+ *
+ * Accessible to authenticated users (both ADMIN and USER roles)
+ */
+export const userProcedure = t.procedure.use(enforceUserRole);
