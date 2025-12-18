@@ -10,7 +10,7 @@ if (!process.env.SKIP_ENV_VALIDATION) {
 
 /** @type {import("next").NextConfig} */
 const config = {
-    i18n: { defaultLocale: "en", locales: ["en"] },
+    i18n: { defaultLocale: "fr", locales: ["fr", "en"] },
     images: {
         formats: ["image/avif", "image/webp"],
         remotePatterns: [{ hostname: "ik.imagekit.io", pathname: "/**", protocol: "https" }],

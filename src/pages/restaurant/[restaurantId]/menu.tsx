@@ -67,7 +67,7 @@ export async function getStaticProps(context: GetStaticPropsContext<{ restaurant
         transformer: superjson,
     });
     const restaurantId = context.params?.restaurantId as string;
-    const messages = (await import("src/lang/en.json")).default;
+    const messages = (await import("src/lang/fr.json")).default;
     try {
         const restaurant = await ssg.restaurant.getDetails.fetch({ id: restaurantId });
         if (restaurant.isPublished) {

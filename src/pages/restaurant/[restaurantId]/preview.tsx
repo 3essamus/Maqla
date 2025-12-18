@@ -64,7 +64,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext<{ re
         transformer: superjson,
     });
     const restaurantId = context.params?.restaurantId as string;
-    const messages = (await import("src/lang/en.json")).default;
+    const messages = (await import("src/lang/fr.json")).default;
 
     try {
         // Hydrate trpc context from server side

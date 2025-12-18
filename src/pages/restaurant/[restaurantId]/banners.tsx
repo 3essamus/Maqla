@@ -157,7 +157,7 @@ const BannersPage: NextPage = () => {
     );
 };
 
-export const getStaticProps = async () => ({ props: { messages: (await import("src/lang/en.json")).default } });
+export const getStaticProps = async () => ({ props: { messages: (await import("src/lang/fr.json")).default } });
 
 export const getStaticPaths = async () => ({ fallback: "blocking", paths: [] });
 

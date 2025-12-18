@@ -1,0 +1,508 @@
+{
+    "common": {
+        "title": "Maqla",
+        "edit": "Modifier",
+        "save": "Enregistrer",
+        "delete": "Supprimer",
+        "cancel": "Annuler",
+        "confirmDelete": "Confirmer la suppression",
+        "deleteSuccess": "Supprimé avec succès",
+        "createSuccess": "Créé avec succès",
+        "updateSuccess": "Mis à jour avec succès",
+        "privacyPolicy": "Politique de confidentialité",
+        "terms&Conditions": "Conditions générales",
+        "footerCopyright": "© 2025 Copyright: Maqla - Restaurants de Jijel",
+        "login": "Connexion",
+        "logout": "Déconnexion",
+        "openDashboard": "Aller au tableau de bord",
+        "loading": "Chargement...",
+        "error": "Erreur",
+        "success": "Succès",
+        "view": "Voir",
+        "close": "Fermer"
+    },
+    "auth": {
+        "googleSignIn": "Se connecter avec Google",
+        "githubSignIn": "Se connecter avec GitHub",
+        "keyRequired": "La clé est requise",
+        "loginFailed": "Échec de la connexion",
+        "testLoginDesc": "La clé de connexion est utilisée uniquement à des fins de test",
+        "loginKeyInputLabel": "Clé de connexion",
+        "loginKeyInputPlaceholder": "Collez la clé de connexion ici",
+        "loginButtonLabel": "Se connecter"
+    },
+    "errorPage": {
+        "defaultMessage": "Oops! Quelque chose s'est mal passé",
+        "homePageButtonLabel": "Retour à la page d'accueil",
+        "401": {
+            "title": "Aucune autorisation trouvée",
+            "description": "Vous n'avez pas la permission d'accéder à la page demandée. Veuillez vous connecter et réessayer"
+        },
+        "404": {
+            "title": "Vous avez trouvé un endroit secret.",
+            "description": "Malheureusement, il ne s'agit que d'une page 404. Vous avez peut-être mal saisi l'adresse ou la page a été déplacée vers une autre URL."
+        },
+        "500": {
+            "title": "Erreur interne du serveur",
+            "description": "Oups, quelque chose s'est mal passé sur le serveur"
+        }
+    },
+    "landing": {
+        "hero": {
+            "tagLine1": "La meilleure façon de découvrir",
+            "tagLine2": "Les restaurants",
+            "tagLine3": "de Jijel",
+            "getStarted": "Commencer gratuitement"
+        },
+        "steps": {
+            "title": "Comment ça marche?",
+            "stepItems": [
+                {
+                    "title": "Créer un restaurant",
+                    "description": "Créez votre restaurant avec les détails de base"
+                },
+                {
+                    "title": "Ajouter du contenu",
+                    "description": "Ajoutez des menus et des articles à votre restaurant"
+                },
+                {
+                    "title": "Publier le restaurant",
+                    "description": "Publiez votre restaurant pour le rendre accessible à tous"
+                },
+                {
+                    "title": "Partager",
+                    "description": "Partagez l'URL de votre menu avec vos clients"
+                }
+            ]
+        },
+        "features": {
+            "tagLine": "Pourquoi Maqla?",
+            "title": "Créez le menu de votre restaurant facilement",
+            "subTitle": "Maqla dispose de plusieurs fonctionnalités géniales qui le rendent parfait pour faire passer le menu de votre restaurant au niveau supérieur",
+            "featuresItems": [
+                {
+                    "key": "webOptimized",
+                    "title": "Optimisé pour le web",
+                    "description": "La page de menu générée a été optimisée pour les moteurs de recherche ainsi que pour les robots d'exploration des médias sociaux, ce qui garantira que votre menu de restaurant a une portée plus élevée."
+                },
+                {
+                    "key": "whatsappOrdering",
+                    "title": "Commande par WhatsApp",
+                    "description": "Vos clients peuvent passer commande directement via WhatsApp, rendant le processus simple et familier."
+                },
+                {
+                    "key": "reviews",
+                    "title": "Système d'avis",
+                    "description": "Les clients peuvent laisser des avis sur votre restaurant, vous aidant à construire votre réputation et à attirer plus de clients."
+                },
+                {
+                    "key": "organize",
+                    "title": "Organisez vos données facilement",
+                    "description": "Maqla fournit une interface intuitive pour gérer facilement vos menus. Chaque restaurant peut avoir plusieurs menus avec plusieurs sous-catégories."
+                },
+                {
+                    "key": "responsiveDesign",
+                    "title": "Voir depuis n'importe quel appareil",
+                    "description": "Les clients peuvent consulter votre menu numérique depuis leurs appareils personnels à tout moment, sans installation d'application. Le menu s'adapte automatiquement à l'appareil de l'utilisateur."
+                },
+                {
+                    "key": "localFocus",
+                    "title": "Focus sur Jijel",
+                    "description": "Une plateforme dédiée aux restaurants de Jijel, facilitant la découverte de la cuisine locale pour les habitants et les visiteurs."
+                }
+            ]
+        },
+        "pricing": {
+            "title": "Tarification",
+            "freeTier": {
+                "label": "Gratuit",
+                "maxRestaurantCount": "Créer jusqu'à {count} restaurant",
+                "maxMenuCount": "Ajouter jusqu'à {count} menus par restaurant",
+                "maxMenuItemCount": "Ajouter jusqu'à {count} articles au total",
+                "supportType": "Support de base",
+                "getStartedBtnLabel": "Commencer"
+            },
+            "paidTier": {
+                "label": "Payant - 5000 DZD/an",
+                "maxRestaurantCount": "Créer {count} restaurant",
+                "maxMenuCount": "Ajouter un nombre illimité de menus",
+                "maxMenuItemCount": "Ajouter un nombre illimité d'articles",
+                "supportType": "Support prioritaire",
+                "activationRequired": "Activation par clé requise",
+                "contactUsButtonLabel": "Nous contacter"
+            }
+        },
+        "aboutUs": {
+            "title": "À propos de nous",
+            "subtitle": {
+                "line1": "Maqla est une plateforme ",
+                "line2": "dédiée aux restaurants ",
+                "line3": "de Jijel"
+            },
+            "goal": "Notre objectif est de fournir une solution simple et efficace que les restaurants peuvent utiliser pour améliorer leur portée et améliorer la façon dont leurs clients interagissent avec eux.",
+            "appreciation": "Nous apprécions grandement tout commentaire ou contribution qui pourrait nous aider à nous améliorer."
+        }
+    },
+    "menu": {
+        "noMenusForRestaurant": "Il n'y a aucun menu disponible pour ce restaurant. Essayez de revenir plus tard",
+        "noItemsForMenu": "Il n'y a aucun article pour le menu de ce restaurant. Essayez de revenir plus tard.",
+        "noDetailsAvailable": "Les détails de ce restaurant ne sont pas disponibles pour le moment. Nous sommes désolés pour le désagrément. Veuillez réessayer dans un moment",
+        "seoTitle": "Menu {name}",
+        "seoDescription": {
+            "restaurantName": "Menu du restaurant {name}",
+            "restaurantLocation": "Localisation: {location}.",
+            "restaurantContactNo": "Numéro de contact: {contactNo}.",
+            "maqla": "Ce menu a été généré en utilisant Maqla"
+        }
+    },
+    "preview": {
+        "seoTitle": "Aperçu du restaurant",
+        "seoDescription": "Prévisualisez à quoi ressemblera le menu du restaurant publié",
+        "alertTitle": "Mode aperçu",
+        "alertContent": "Cette URL d'aperçu n'est pas destinée à être partagée avec quiconque.",
+        "alertDesc": "Une fois que vous avez finalisé vos modifications, vous pourrez publier votre menu de restaurant et générer une URL partageable qui pourra ensuite être partagée avec vos clients."
+    },
+    "dashboard": {
+        "noContent": "Oups, rien à voir ici...",
+        "imageUpload": {
+            "titleLabel": "Image",
+            "uploadHelperText": "Faites glisser une image jpeg ici ou cliquez pour sélectionner un fichier image jpeg",
+            "zoom": "Zoom",
+            "rotation": "Rotation",
+            "crop": "Recadrer",
+            "cropModalTitle": "Recadrer l'image"
+        },
+        "publishButton": {
+            "statusUpdateError": "Échec de la mise à jour du statut du menu du restaurant",
+            "publishedBtnLabel": "Publié",
+            "notPublishedBtnLabel": "Non publié",
+            "modalTitle": "Publier et partager votre menu",
+            "modalAlertPublishedTitle": "Le menu est publié",
+            "modalAlertNotPublishedTitle": "Le menu n'est pas publié",
+            "publishedMenuDesc": "Les modifications du menu peuvent prendre environ 30 minutes pour être reflétées dans la page du menu publié",
+            "publishedMenuUrlLabel": "URL du menu publié",
+            "copyUrlTooltip": "Copier l'URL",
+            "copiedUrlTooltip": "URL copiée",
+            "notPublishedMenuDesc": "Veuillez publier le menu une fois que vous avez finalisé vos modifications. Une fois publié, vous pourrez partager l'URL directe ou le code QR de votre menu avec vos clients",
+            "publishSwitchLabel": "Publier le menu",
+            "downloadQrButtonLabel": "Télécharger le code QR",
+            "previewUrlAlertTitle": "URL d'aperçu",
+            "previewUrlAlertDesc": "L'URL suivante peut être utilisée à des fins de test car elle imitera l'interface du menu réel tout en se mettant à jour en temps réel"
+        },
+        "editMenu": {
+            "seoTitle": "Modifier le menu",
+            "seoDescription": "Gérer les menus de votre restaurant",
+            "breadcrumb": "Menu",
+            "menu": {
+                "fetchError": "Échec de la récupération des menus",
+                "positionUpdateError": "Échec de la mise à jour de la position du menu",
+                "deleteMenuError": "Échec de la suppression du menu du restaurant",
+                "addMenuLabel": "Ajouter un menu",
+                "deleteConfirmTitle": "Supprimer le menu {name}",
+                "deleteConfirmDesc": "Êtes-vous sûr de vouloir supprimer ce menu? Cette action supprimera également toutes les catégories et articles associés à ce menu et ne peut pas être annulée",
+                "deleteSuccessToast": "Menu {name} et détails associés supprimés avec succès",
+                "createModalTitle": "Créer un menu",
+                "createError": "Échec de la création du menu pour le restaurant",
+                "createSuccessDesc": "Nouveau menu {name} créé avec succès",
+                "updateModalTitle": "Mettre à jour le menu",
+                "updateError": "Échec de la mise à jour du menu",
+                "updateSuccessDesc": "Détails du menu {name} mis à jour avec succès",
+                "inputNameLabel": "Nom",
+                "inputNamePlaceholder": "Nom du menu",
+                "inputTimeLabel": "Horaire de disponibilité",
+                "inputTimePlaceholder": "10h00 - 21h00"
+            },
+            "category": {
+                "fetchError": "Échec de la récupération des catégories et des articles du menu",
+                "positionUpdateError": "Échec de la mise à jour de la position de la catégorie",
+                "deleteCategoryError": "Échec de la suppression de la catégorie",
+                "addCategoryLabel": "Ajouter une catégorie",
+                "deleteConfirmTitle": "Supprimer la catégorie {name}",
+                "deleteConfirmDesc": "Êtes-vous sûr de vouloir supprimer cette catégorie? Cette action supprimera également tous les articles associés à cette catégorie et ne peut pas être annulée",
+                "deleteSuccessToast": "Catégorie {name} et articles associés supprimés avec succès",
+                "createModalTitle": "Créer une catégorie",
+                "createError": "Échec de la création de la nouvelle catégorie",
+                "createSuccessDesc": "Nouvelle catégorie {name} créée avec succès",
+                "updateModalTitle": "Mettre à jour la catégorie",
+                "updateError": "Échec de la mise à jour de la catégorie",
+                "updateSuccessDesc": "Détails de la catégorie {name} mis à jour avec succès",
+                "inputNameLabel": "Nom",
+                "inputNamePlaceholder": "Nom de la catégorie"
+            },
+            "menuItem": {
+                "positionUpdateError": "Échec de la mise à jour de la position de l'article du menu",
+                "deleteMenuItemError": "Échec de la suppression de l'article du menu",
+                "addMenuItemLabel": "Ajouter un article",
+                "noImage": "Pas d'image",
+                "noDescription": "Pas de description",
+                "deleteConfirmTitle": "Supprimer l'article {name}",
+                "deleteConfirmDesc": "Êtes-vous sûr de vouloir supprimer cet article du menu? Cette action ne peut pas être annulée",
+                "deleteSuccessToast": "Article du menu {name} supprimé avec succès",
+                "createModalTitle": "Créer un article du menu",
+                "createError": "Échec de la création de l'article du menu",
+                "createSuccessDesc": "Nouvel article du menu {name} créé avec succès",
+                "updateModalTitle": "Mettre à jour l'article du menu",
+                "updateError": "Échec de la mise à jour de l'article du menu",
+                "updateSuccessDesc": "Détails de l'article {name} mis à jour avec succès",
+                "inputNameLabel": "Nom",
+                "inputNamePlaceholder": "Nom de l'article",
+                "inputPriceLabel": "Prix",
+                "inputPricePlaceholder": "500 DZD",
+                "inputDescriptionLabel": "Description"
+            }
+        },
+        "restaurant": {
+            "seoTitle": "Restaurants",
+            "seoDescription": "Gérer tous les restaurants que vous avez créés",
+            "navTitle": "Restaurants",
+            "addNewCardTitle": "Ajouter un nouveau restaurant",
+            "addNewCardSubTitle": "Commencez à créer un nouveau menu numérique en ajoutant un nouveau restaurant",
+            "headerTitle": "Mes restaurants",
+            "createModalTitle": "Ajouter un restaurant",
+            "createError": "Échec de la création du restaurant",
+            "createSuccessDesc": "Nouveau restaurant {name} créé avec succès",
+            "updateModalTitle": "Modifier le restaurant",
+            "updateError": "Échec de la mise à jour du restaurant",
+            "updateSuccessDesc": "Restaurant {name} créé avec succès",
+            "inputNameLabel": "Nom",
+            "inputNamePlaceholder": "Nom du restaurant",
+            "inputLocationLabel": "Localisation",
+            "inputLocationPlaceholder": "Adresse, Jijel",
+            "inputContactNoLabel": "Numéro WhatsApp",
+            "inputContactNoPlaceholder": "+213555123456",
+            "inputDeliveryFeeLabel": "Frais de livraison (DZD)",
+            "inputDeliveryFeePlaceholder": "200",
+            "fetchRestaurantsError": "Échec de la récupération des restaurants",
+            "deleteModalTitle": "Supprimer le restaurant {name}",
+            "deleteModalDesc": "Êtes-vous sûr de vouloir supprimer ce restaurant? Cette action supprimera également tous les éléments associés à ce restaurant et ne peut pas être annulée",
+            "deleteSuccessDesc": "Restaurant {name} et détails associés supprimés avec succès",
+            "deleteError": "Échec de la suppression du restaurant"
+        },
+        "restaurantManage": {
+            "seoTitle": "Gérer le restaurant",
+            "seoDescription": "Gérer les menus et bannières de votre restaurant",
+            "restaurantFetchError": "Échec de la récupération des détails du restaurant",
+            "breadcrumb": "Restaurant",
+            "menuCardTitle": "Menus",
+            "menuCardSubTitle": "Gérer les menus, catégories et articles individuels de votre restaurant",
+            "bannersCardTitle": "Bannières",
+            "bannersCardSubTitle": "Gérer les bannières qui pourraient être utilisées pour afficher du contenu promotionnel dans votre menu de restaurant"
+        },
+        "banner": {
+            "seoTitle": "Bannières",
+            "seoDescription": "Gérer les bannières de votre restaurant",
+            "breadcrumb": "Bannières",
+            "fetchError": "Échec de la récupération des bannières",
+            "createError": "Échec de la création de la bannière pour le restaurant",
+            "createSuccessDesc": "Nouvelle bannière créée avec succès pour le restaurant",
+            "addModalTitle": "Ajouter une bannière",
+            "addNewCardTitle": "Ajouter une nouvelle bannière",
+            "addNewCardSubTitle": "Commencez à créer une nouvelle bannière pour votre restaurant",
+            "deleteError": "Échec de la suppression de la bannière",
+            "deleteSuccessDesc": "Bannière du restaurant supprimée avec succès",
+            "deleteModalTitle": "Supprimer la bannière du restaurant?",
+            "deleteModalDesc": "Êtes-vous sûr de vouloir supprimer cette bannière de restaurant? Cette action ne peut pas être annulée"
+        },
+        "explore": {
+            "seoTitle": "Découvrir les restaurants",
+            "seoDescription": "Découvrez les restaurants de Jijel",
+            "navTitle": "Explorer",
+            "pageTitle": "Restaurants de Jijel",
+            "pageSubTitle": "Découvrez les meilleurs restaurants de Jijel",
+            "fetchError": "Échec de la récupération des restaurants publiés",
+            "noContent": "Il n'y a aucun restaurant publié"
+        }
+    },
+    "cart": {
+        "title": "Panier",
+        "empty": "Votre panier est vide",
+        "addToCart": "Ajouter au panier",
+        "removeFromCart": "Retirer du panier",
+        "total": "Total",
+        "subtotal": "Sous-total",
+        "deliveryFee": "Frais de livraison",
+        "orderViaWhatsApp": "Commander via WhatsApp",
+        "clearCart": "Vider le panier",
+        "cartEnabled": "Panier activé",
+        "enableCart": "Activer le panier",
+        "disableCart": "Désactiver le panier",
+        "itemsInCart": "{count} article(s)",
+        "viewCart": "Voir le panier",
+        "whatsappOrderMessage": "🍴 Nouvelle commande de {restaurantName}\n\n📋 Articles:\n{items}\n\n💰 Sous-total: {subtotal} DZD\n🚚 Livraison: {delivery} DZD\n✅ Total: {total} DZD\n\nMerci!"
+    },
+    "review": {
+        "title": "Avis",
+        "writeReview": "Écrire un avis",
+        "yourName": "Votre nom",
+        "yourNamePlaceholder": "Entrez votre nom",
+        "rating": "Note",
+        "comment": "Commentaire",
+        "commentPlaceholder": "Partagez votre expérience...",
+        "submit": "Soumettre l'avis",
+        "success": "Avis soumis avec succès",
+        "error": "Échec de la soumission de l'avis",
+        "alreadyReviewed": "Vous avez déjà laissé un avis pour ce restaurant",
+        "noReviews": "Aucun avis pour le moment",
+        "reviews": "Avis ({count})",
+        "averageRating": "Note moyenne",
+        "hidden": "Masqué"
+    },
+    "activation": {
+        "title": "Activer le forfait payant",
+        "description": "Entrez une clé d'activation pour passer au forfait payant (5000 DZD/an) et débloquer des fonctionnalités illimitées",
+        "keyLabel": "Clé d'activation",
+        "keyPlaceholder": "Entrez votre clé d'activation",
+        "activate": "Activer",
+        "success": "Forfait activé avec succès",
+        "error": "Échec de l'activation du forfait",
+        "invalidKey": "Clé d'activation invalide ou expirée",
+        "alreadyUsed": "Cette clé a déjà été utilisée",
+        "currentTier": "Forfait actuel",
+        "expiresAt": "Expire le",
+        "free": "Gratuit",
+        "paid": "Payant",
+        "tierLimitReached": "Limite du forfait {tier} atteinte: {limit}. Passez au forfait payant pour plus de fonctionnalités.",
+        "requestKey": "Demander une clé"
+    },
+    "admin": {
+        "title": "Administration",
+        "dashboard": {
+            "title": "Tableau de bord",
+            "description": "Vue d'ensemble de la plateforme Maqla",
+            "totalUsers": "Utilisateurs",
+            "totalRestaurants": "Restaurants",
+            "publishedRestaurants": "{count} publiés",
+            "totalKeys": "Clés d'activation",
+            "usedKeys": "{used} utilisées",
+            "unusedKeys": "{unused} disponibles",
+            "totalReviews": "Avis",
+            "quickActions": "Actions rapides",
+            "generateKey": "Générer une clé",
+            "generateKeyDesc": "Créer une nouvelle clé d'activation",
+            "moderateRestaurants": "Modérer les restaurants",
+            "moderateRestaurantsDesc": "Publier ou masquer des restaurants"
+        },
+        "keys": {
+            "title": "Clés d'activation",
+            "description": "Générer et gérer les clés d'activation pour les utilisateurs",
+            "generateNew": "Générer une nouvelle clé",
+            "tierType": "Type de forfait",
+            "expirationDays": "Expiration (jours)",
+            "generate": "Générer la clé",
+            "allKeys": "Toutes les clés",
+            "key": "Clé",
+            "type": "Type",
+            "status": "Statut",
+            "user": "Utilisateur",
+            "createdAt": "Créée le",
+            "expiresAt": "Expire le",
+            "unused": "Disponible",
+            "used": "Utilisée",
+            "expired": "Expirée",
+            "free": "Gratuit (5 articles)",
+            "paid": "Payant (Illimité)",
+            "noKeys": "Aucune clé générée",
+            "totalKeys": "{count} clé(s) au total",
+            "success": "Clé générée",
+            "successDesc": "La clé d'activation a été créée avec succès",
+            "error": "Erreur",
+            "notUsed": "Non utilisée"
+        },
+        "users": {
+            "title": "Utilisateurs",
+            "description": "Gérer les utilisateurs de la plateforme",
+            "allUsers": "Tous les utilisateurs",
+            "email": "Email",
+            "name": "Nom",
+            "role": "Rôle",
+            "tier": "Forfait",
+            "restaurants": "Restaurants",
+            "expiration": "Expiration",
+            "joinedAt": "Inscrit le",
+            "admin": "Admin",
+            "user": "Utilisateur",
+            "free": "Gratuit",
+            "paid": "Payant",
+            "paidExpired": "Payant (Expiré)",
+            "noUsers": "Aucun utilisateur",
+            "totalUsers": "{count} utilisateur(s)"
+        },
+        "restaurants": {
+            "title": "Restaurants",
+            "description": "Modérer les restaurants de la plateforme",
+            "allRestaurants": "Tous les restaurants",
+            "name": "Nom",
+            "owner": "Propriétaire",
+            "location": "Localisation",
+            "tier": "Forfait",
+            "menus": "Menus",
+            "reviews": "Avis",
+            "status": "Statut",
+            "actions": "Actions",
+            "published": "Publié",
+            "notPublished": "Non publié",
+            "free": "Gratuit",
+            "paid": "Payant",
+            "view": "Voir",
+            "noRestaurants": "Aucun restaurant",
+            "totalRestaurants": "{count} restaurant(s)",
+            "success": "Succès",
+            "statusUpdated": "Le statut du restaurant a été mis à jour",
+            "error": "Erreur"
+        },
+        "reviews": {
+            "title": "Avis",
+            "description": "Modérer les avis des utilisateurs",
+            "allReviews": "Tous les avis",
+            "restaurant": "Restaurant",
+            "buyer": "Acheteur",
+            "rating": "Note",
+            "comment": "Commentaire",
+            "date": "Date",
+            "status": "Statut",
+            "actions": "Actions",
+            "visible": "Visible",
+            "hidden": "Masqué",
+            "hide": "Masquer",
+            "unhide": "Rendre visible",
+            "delete": "Supprimer définitivement",
+            "confirmDelete": "Êtes-vous sûr de vouloir supprimer cet avis définitivement?",
+            "noReviews": "Aucun avis",
+            "totalReviews": "{count} avis",
+            "hideSuccess": "Succès",
+            "hideSuccessDesc": "L'avis a été masqué",
+            "unhideSuccess": "Succès",
+            "unhideSuccessDesc": "L'avis a été rendu visible",
+            "deleteSuccess": "Succès",
+            "deleteSuccessDesc": "L'avis a été supprimé définitivement",
+            "error": "Erreur"
+        },
+        "navigation": {
+            "dashboard": "Tableau de bord",
+            "keys": "Clés d'activation",
+            "users": "Utilisateurs",
+            "restaurants": "Restaurants",
+            "reviews": "Avis",
+            "backToApp": "Retour à l'application"
+        }
+    },
+    "settings": {
+        "title": "Paramètres",
+        "account": "Compte",
+        "tier": "Forfait",
+        "activateKey": "Activer une clé"
+    },
+    "validation": {
+        "required": "Ce champ est requis",
+        "minLength": "Minimum {min} caractères",
+        "maxLength": "Maximum {max} caractères",
+        "invalidEmail": "Email invalide",
+        "invalidPhone": "Numéro de téléphone algérien invalide",
+        "invalidPrice": "Prix invalide",
+        "minValue": "La valeur minimale est {min}",
+        "maxValue": "La valeur maximale est {max}",
+        "nameRequired": "Le nom est requis",
+        "ratingRequired": "La note est requise",
+        "commentRequired": "Le commentaire est requis"
+    }
+}

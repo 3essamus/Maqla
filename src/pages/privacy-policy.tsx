@@ -180,6 +180,6 @@ const PrivacyPolicyPage: NextPage = () => {
     );
 };
 
-export const getStaticProps = async () => ({ props: { messages: (await import("src/lang/en.json")).default } });
+export const getStaticProps = async () => ({ props: { messages: (await import("src/lang/fr.json")).default } });
 
 export default PrivacyPolicyPage;

@@ -81,7 +81,7 @@ ErrorPage.getInitialProps = async (contextData) => {
     await Sentry.captureUnderscoreErrorException(contextData);
     const errorAsPath = Number.isNaN(Number(asPath?.substring(1))) ? 0 : Number(asPath?.substring(1));
     const statusCode = res?.statusCode || err?.statusCode || errorAsPath || 404;
-    const messages = (await import("src/lang/en.json")).default;
+    const messages = (await import("src/lang/fr.json")).default;
     return { messages, statusCode };
 };
 

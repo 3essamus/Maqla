@@ -203,7 +203,7 @@ const AdminReviews: NextPage = () => {
 };
 
 export const getStaticProps = async () => ({
-    props: { messages: (await import("src/lang/en.json")).default },
+    props: { messages: (await import("src/lang/fr.json")).default },
     revalidate: 60,
 });
 

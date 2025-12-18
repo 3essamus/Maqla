@@ -40,12 +40,12 @@ const MyApp: AppType<{ messages?: AbstractIntlMessages; session: Session | null 
                 ]}
                 openGraph={{
                     images: [{ url: `${env.NEXT_PUBLIC_PROD_URL}/menufic_banner.jpg` }],
-                    siteName: "menufic.com",
+                    siteName: "Maqla - Restaurants de Jijel",
                     type: "website",
                     url: env.NEXT_PUBLIC_PROD_URL,
                 }}
                 themeColor={theme.light.primary[6]}
-                titleTemplate="Menufic - %s"
+                titleTemplate="Maqla - %s"
                 twitter={{ cardType: "summary_large_image" }}
             />
             <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>

@@ -72,7 +72,7 @@ const HomePage: NextPage = () => {
 };
 
 export const getStaticProps = async () => ({
-    props: { messages: (await import("src/lang/en.json")).default },
+    props: { messages: (await import("src/lang/fr.json")).default },
     revalidate: 300, // Revalidate every 5 minutes
 });
 
