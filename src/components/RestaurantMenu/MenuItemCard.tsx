@@ -1,9 +1,12 @@
 import type { FC } from "react";
 import { useMemo, useState } from "react";
 
-import { Box, createStyles, Paper, Stack, Text } from "@mantine/core";
+import { ActionIcon, Badge, Box, createStyles, Group, Paper, Stack, Text } from "@mantine/core";
+import { IconPlus } from "@tabler/icons";
 
 import type { Image, MenuItem } from "@prisma/client";
+
+import { useCart, type CartRestaurant } from "src/contexts/CartContext";
 
 import { ViewMenuItemModal } from "./ViewMenuItemModal";
 import { ImageKitImage } from "../ImageKitImage";
@@ -67,12 +70,34 @@ const useStyles = createStyles((theme, { imageColor }: StyleProps, getRef) => {
 interface Props {
     /** Menu item to be displayed in the card */
     item: MenuItem & { image: Image | null };
+    /** Restaurant info for cart */
+    restaurant?: CartRestaurant;
 }
 
 /** Display each menu item as a card in the full restaurant menu */
-export const MenuItemCard: FC<Props> = ({ item }) => {
+export const MenuItemCard: FC<Props> = ({ item, restaurant }) => {
     const { classes, cx } = useStyles({ imageColor: item?.image?.color });
     const [modalVisible, setModalVisible] = useState(false);
+    const { addItem, getItemQuantity, isEnabled } = useCart();
+
+    const quantity = getItemQuantity(item.id);
+    const priceNum = parseFloat(item.price.replace(/[^\d.-]/g, "")) || 0;
+
+    const handleAddToCart = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (restaurant) {
+            addItem(
+                {
+                    id: item.id,
+                    name: item.name,
+                    price: priceNum,
+                    menuItemId: item.id,
+                },
+                restaurant
+            );
+        }
+    };
+
     return (
         <>
             <Paper
@@ -97,18 +122,44 @@ export const MenuItemCard: FC<Props> = ({ item }) => {
                 )}
 
                 <Stack className={classes.cardDescWrap}>
-                    <Text className={cx(classes.cardText, classes.cardItemTitle)} size="lg" weight={700}>
-                        {item.name}
-                    </Text>
-                    <Text color="red" size="sm">
-                        {item.price}
-                    </Text>
+                    <Group position="apart" align="start">
+                        <Text className={cx(classes.cardText, classes.cardItemTitle)} size="lg" weight={700}>
+                            {item.name}
+                        </Text>
+                        {isEnabled && restaurant && (
+                            <ActionIcon
+                                color="blue"
+                                variant="filled"
+                                size="md"
+                                radius="xl"
+                                onClick={handleAddToCart}
+                                title="Ajouter au panier"
+                            >
+                                <IconPlus size={16} />
+                            </ActionIcon>
+                        )}
+                    </Group>
+                    <Group position="apart" align="center">
+                        <Text color="red" size="sm" weight={600}>
+                            {item.price}
+                        </Text>
+                        {quantity > 0 && (
+                            <Badge color="blue" variant="filled" size="sm">
+                                {quantity} dans le panier
+                            </Badge>
+                        )}
+                    </Group>
                     <Text className={cx(classes.cardText, classes.cardItemDesc)} opacity={0.7} size="xs">
                         {item.description}
                     </Text>
                 </Stack>
             </Paper>
-            <ViewMenuItemModal menuItem={item} onClose={() => setModalVisible(false)} opened={modalVisible} />
+            <ViewMenuItemModal
+                menuItem={item}
+                restaurant={restaurant}
+                onClose={() => setModalVisible(false)}
+                opened={modalVisible}
+            />
         </>
     );
 };

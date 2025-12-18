@@ -5,9 +5,12 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Carousel } from "@mantine/carousel";
 import {
     ActionIcon,
+    Badge,
     Box,
+    Button,
     createStyles,
     Flex,
+    Group,
     MediaQuery,
     SimpleGrid,
     Stack,
@@ -15,15 +18,17 @@ import {
     Text,
     useMantineColorScheme,
 } from "@mantine/core";
-import { IconMapPin, IconMoonStars, IconPhone, IconSun } from "@tabler/icons";
+import { IconMapPin, IconMoonStars, IconPhone, IconShoppingCart, IconSun } from "@tabler/icons";
 import Autoplay from "embla-carousel-autoplay";
 import { useTranslations } from "next-intl";
 
 import type { Category, Image, Menu, MenuItem, Restaurant } from "@prisma/client";
 
+import { useCart, type CartRestaurant } from "src/contexts/CartContext";
 import { Black, White } from "src/styles/theme";
 
 import { MenuItemCard } from "./MenuItemCard";
+import { CartDrawer } from "../Cart/CartDrawer";
 import { Empty } from "../Empty";
 import { ImageKitImage } from "../ImageKitImage";
 
@@ -119,7 +124,12 @@ export const RestaurantMenu: FC<Props> = ({ restaurant }) => {
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const [menuParent] = useAutoAnimate<HTMLDivElement>();
     const [selectedMenu, setSelectedMenu] = useState<string | null | undefined>(restaurant?.menus?.[0]?.id);
+    const [cartDrawerOpened, setCartDrawerOpened] = useState(false);
     const t = useTranslations("menu");
+
+    const { toggleCart, isEnabled, getTotalItems } = useCart();
+
+    const cartItemCount = getTotalItems();
 
     const menuDetails = useMemo(
         () => restaurant?.menus?.find((item) => item.id === selectedMenu),
@@ -133,6 +143,16 @@ export const RestaurantMenu: FC<Props> = ({ restaurant }) => {
         }
         return banners;
     }, [restaurant]);
+
+    const restaurantForCart: CartRestaurant = useMemo(
+        () => ({
+            id: restaurant.id,
+            name: restaurant.name,
+            whatsappNumber: restaurant.whatsappNumber,
+            deliveryFee: restaurant.deliveryFee,
+        }),
+        [restaurant]
+    );
 
     const haveMenuItems = menuDetails?.categories?.some((category) => category?.items?.length > 0);
 
@@ -224,6 +244,31 @@ export const RestaurantMenu: FC<Props> = ({ restaurant }) => {
                     )}
                 </Stack>
             </MediaQuery>
+
+            {/* Cart Toggle & Delivery Fee */}
+            <Group position="apart" mt="xl" mb="md">
+                <Group spacing="sm">
+                    <Button
+                        leftIcon={<IconShoppingCart size={18} />}
+                        onClick={toggleCart}
+                        variant={isEnabled ? "filled" : "outline"}
+                        color="blue"
+                    >
+                        {isEnabled ? "Panier activé" : "Activer le panier"}
+                    </Button>
+                    {restaurant.deliveryFee && (
+                        <Badge color="green" variant="filled" size="lg">
+                            Livraison: {restaurant.deliveryFee} DZD
+                        </Badge>
+                    )}
+                </Group>
+                {isEnabled && cartItemCount > 0 && (
+                    <Button onClick={() => setCartDrawerOpened(true)} leftIcon={<IconShoppingCart size={18} />}>
+                        Voir le panier ({cartItemCount})
+                    </Button>
+                )}
+            </Group>
+
             <Tabs my={40} onTabChange={setSelectedMenu} value={selectedMenu}>
                 <Tabs.List>
                     {restaurant?.menus?.map((menu) => (
@@ -255,7 +300,7 @@ export const RestaurantMenu: FC<Props> = ({ restaurant }) => {
                                 mb={30}
                             >
                                 {category.items?.map((item) => (
-                                    <MenuItemCard key={item.id} item={item} />
+                                    <MenuItemCard key={item.id} item={item} restaurant={restaurantForCart} />
                                 ))}
                             </SimpleGrid>
                         </Box>
@@ -265,6 +310,9 @@ export const RestaurantMenu: FC<Props> = ({ restaurant }) => {
                 )}
                 {!!restaurant?.menus?.length && !haveMenuItems && <Empty height={400} text={t("noItemsForMenu")} />}
             </Box>
+
+            {/* Cart Drawer */}
+            <CartDrawer opened={cartDrawerOpened} onClose={() => setCartDrawerOpened(false)} />
         </Box>
     );
 };
