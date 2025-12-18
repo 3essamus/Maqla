@@ -11,6 +11,7 @@ import { DefaultSeo } from "next-seo";
 import type { ColorScheme } from "@mantine/core";
 import type { AbstractIntlMessages } from "next-intl";
 
+import { CartProvider } from "src/contexts/CartContext";
 import { env } from "src/env/client.mjs";
 import { CustomFonts } from "src/styles/CustomFonts";
 import { getMantineTheme, theme } from "src/styles/theme";
@@ -52,10 +53,12 @@ const MyApp: AppType<{ messages?: AbstractIntlMessages; session: Session | null 
                     <CustomFonts />
                     <NotificationsProvider>
                         <SessionProvider session={session}>
-                            <NextIntlProvider messages={pageProps.messages}>
-                                <Component {...pageProps} />
-                            </NextIntlProvider>
-                            <Analytics />
+                            <CartProvider>
+                                <NextIntlProvider messages={pageProps.messages}>
+                                    <Component {...pageProps} />
+                                </NextIntlProvider>
+                                <Analytics />
+                            </CartProvider>
                         </SessionProvider>
                     </NotificationsProvider>
                 </MantineProvider>
