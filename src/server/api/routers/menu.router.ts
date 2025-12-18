@@ -6,26 +6,19 @@ import type { PrismaPromise } from "@prisma/client";
 import { env } from "src/env/server.mjs";
 import { createTRPCRouter, protectedProcedure } from "src/server/api/trpc";
 import { imageKit } from "src/server/imageUtil";
+import { checkMenuLimit } from "src/server/utils/tierLimits";
 import { id, menuInput, restaurantId } from "src/utils/validators";
 
 export const menuRouter = createTRPCRouter({
     /** Create a new menu under a restaurant */
     create: protectedProcedure.input(menuInput.merge(restaurantId)).mutation(async ({ ctx, input }) => {
-        const [count, lastMenuItem] = await ctx.prisma.$transaction([
-            ctx.prisma.menu.count({ where: { restaurantId: input.restaurantId } }),
-            ctx.prisma.menu.findFirst({
-                orderBy: { position: "desc" },
-                where: { restaurantId: input.restaurantId, userId: ctx.session.user.id },
-            }),
-        ]);
+        // Check tier-based menu limit
+        await checkMenuLimit(ctx.prisma, ctx.session.user.id, ctx.session.user.tier);
 
-        /** Check whether the maximum number of menus per restaurant has been reached */
-        if (count >= Number(env.NEXT_PUBLIC_MAX_MENUS_PER_RESTAURANT)) {
-            throw new TRPCError({
-                code: "BAD_REQUEST",
-                message: "Reached maximum number of menus per restaurant",
-            });
-        }
+        const lastMenuItem = await ctx.prisma.menu.findFirst({
+            orderBy: { position: "desc" },
+            where: { restaurantId: input.restaurantId, userId: ctx.session.user.id },
+        });
 
         return ctx.prisma.menu.create({
             data: {

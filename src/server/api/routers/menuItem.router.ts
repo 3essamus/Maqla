@@ -6,26 +6,19 @@ import type { Image, MenuItem, Prisma } from "@prisma/client";
 import { env } from "src/env/server.mjs";
 import { createTRPCRouter, protectedProcedure } from "src/server/api/trpc";
 import { encodeImageToBlurhash, getColor, imageKit, rgba2hex, uploadImage } from "src/server/imageUtil";
+import { checkMenuItemLimit } from "src/server/utils/tierLimits";
 import { categoryId, id, menuId, menuItemInput } from "src/utils/validators";
 
 export const menuItemRouter = createTRPCRouter({
     /** Create a new menu item under a category of a restaurant menu */
     create: protectedProcedure.input(menuItemInput.merge(categoryId).merge(menuId)).mutation(async ({ ctx, input }) => {
-        const [count, lastMenuItem] = await ctx.prisma.$transaction([
-            ctx.prisma.menuItem.count({ where: { categoryId: input.categoryId } }),
-            ctx.prisma.menuItem.findFirst({
-                orderBy: { position: "desc" },
-                where: { categoryId: input.categoryId, userId: ctx.session.user.id },
-            }),
-        ]);
+        // Check tier-based menu item limit (total across all restaurants)
+        await checkMenuItemLimit(ctx.prisma, ctx.session.user.id, ctx.session.user.tier);
 
-        /** Check if the maximum number of items per category has been reached */
-        if (count >= Number(env.NEXT_PUBLIC_MAX_MENU_ITEMS_PER_CATEGORY)) {
-            throw new TRPCError({
-                code: "BAD_REQUEST",
-                message: "Reached maximum number of menu items per category",
-            });
-        }
+        const lastMenuItem = await ctx.prisma.menuItem.findFirst({
+            orderBy: { position: "desc" },
+            where: { categoryId: input.categoryId, userId: ctx.session.user.id },
+        });
 
         const createData: Prisma.MenuItemCreateInput = {
             category: { connect: { id_userId: { id: input.categoryId, userId: ctx.session.user.id } } },
