@@ -147,9 +147,13 @@ export const restaurantRouter = createTRPCRouter({
         ctx.prisma.restaurant.findMany({ include: { image: true }, where: { userId: ctx.session.user.id } })
     ),
 
-    /** Get all the restaurants that have been published by all users */
-    getAllPublished: protectedProcedure.query(({ ctx }) =>
-        ctx.prisma.restaurant.findMany({ include: { image: true }, where: { isPublished: true } })
+    /** Get all the restaurants that have been published by all users (public) */
+    getAllPublished: publicProcedure.query(({ ctx }) =>
+        ctx.prisma.restaurant.findMany({
+            include: { image: true },
+            where: { isPublished: true },
+            orderBy: { createdAt: "desc" }
+        })
     ),
 
     /** Get banner images belonging to a restaurant */
